@@ -21,12 +21,31 @@ class App extends Component {
       ]
     });
   };
+
+  nameChangeHandler = (event) => {
+    this.setState({
+      persons: [
+        { name: "111", age: "22" },
+        { name: event.target.value, age: "33" },
+        { name: "333", age: "34" }
+      ]
+    });
+  };
   render() {
     return (
       <div className="App">
         <h1>Hi,Welcome to ReactJS</h1>
         <button onClick={this.switchNameHandler}>switch name</button>
         {this.state.persons.map((e, i) => {
+          if (i === 1) {
+            return (
+              <Person
+                name={this.state.persons[i].name}
+                age={this.state.persons[i].age}
+                changed={this.nameChangeHandler}
+              />
+            );
+          }
           return (
             <Person
               name={this.state.persons[i].name}
