@@ -10,7 +10,7 @@ class App extends Component {
       { name: "222", age: "33" },
       { name: "333", age: "34" }
     ],
-    showPersons: false
+    showPersons: true
   };
   switchNameHandler = () => {
     console.log("clicked");
@@ -34,8 +34,9 @@ class App extends Component {
   };
 
   togglePersonsHandler = () => {
-    const doesShow = this.state.showPersons;
-    this.setState({ showPersons: !doesShow });
+    // const doesShow = this.state.showPersons;
+    // this.setState({ showPersons: !doesShow });
+    this.setState({ showPersons: true });
   };
   render() {
     const style = {
@@ -45,13 +46,34 @@ class App extends Component {
       padding: "8px",
       cursor: "pointer"
     };
+    let persons = null;
+    if (this.state.showPersons) {
+      persons = this.state.persons.map((e, i) => {
+        if (i === 1) {
+          return (
+            <Person
+              name={this.state.persons[i].name}
+              age={this.state.persons[i].age}
+              changed={this.nameChangeHandler}
+            />
+          );
+        }
+        return (
+          <Person
+            name={this.state.persons[i].name}
+            age={this.state.persons[i].age}
+          />
+        );
+      });
+    }
     return (
       <div className="App">
         <h1>Hi,Welcome to ReactJS</h1>
         <button style={style} onClick={this.togglePersonsHandler}>
           switch name
         </button>
-        {this.state.showPersons ? (
+        {persons}
+        {/* {this.state.showPersons ? (
           <div>
             {this.state.persons.map((e, i) => {
               if (i === 1) {
@@ -71,7 +93,7 @@ class App extends Component {
               );
             })}
           </div>
-        ) : null}
+        ) : null} */}
 
         {/* <Person
           name={this.state.persons[0].name}
@@ -118,8 +140,3 @@ class App extends Component {
 // }
 
 export default App;
-
-
-
-//learn react
-//testing git commit username change
