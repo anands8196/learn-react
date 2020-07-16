@@ -9,7 +9,8 @@ class App extends Component {
       { name: "111", age: "22" },
       { name: "222", age: "33" },
       { name: "333", age: "34" }
-    ]
+    ],
+    showPersons: false
   };
   switchNameHandler = () => {
     console.log("clicked");
@@ -31,6 +32,11 @@ class App extends Component {
       ]
     });
   };
+
+  togglePersonsHandler = () => {
+    const doesShow = this.state.showPersons;
+    this.setState({ showPersons: !doesShow });
+  };
   render() {
     const style = {
       backgroundColor: "white",
@@ -42,26 +48,30 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Hi,Welcome to ReactJS</h1>
-        <button style={style} onClick={this.switchNameHandler}>
+        <button style={style} onClick={this.togglePersonsHandler}>
           switch name
         </button>
-        {this.state.persons.map((e, i) => {
-          if (i === 1) {
-            return (
-              <Person
-                name={this.state.persons[i].name}
-                age={this.state.persons[i].age}
-                changed={this.nameChangeHandler}
-              />
-            );
-          }
-          return (
-            <Person
-              name={this.state.persons[i].name}
-              age={this.state.persons[i].age}
-            />
-          );
-        })}
+        {this.state.showPersons ? (
+          <div>
+            {this.state.persons.map((e, i) => {
+              if (i === 1) {
+                return (
+                  <Person
+                    name={this.state.persons[i].name}
+                    age={this.state.persons[i].age}
+                    changed={this.nameChangeHandler}
+                  />
+                );
+              }
+              return (
+                <Person
+                  name={this.state.persons[i].name}
+                  age={this.state.persons[i].age}
+                />
+              );
+            })}
+          </div>
+        ) : null}
         {/* <Person
           name={this.state.persons[0].name}
           age={this.state.persons[0].age}
