@@ -72,6 +72,8 @@ class App extends Component {
             })}
           </div>
         ) : null}
+
+        
         {/* <Person
           name={this.state.persons[0].name}
           age={this.state.persons[0].age}
