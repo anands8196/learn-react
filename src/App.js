@@ -73,7 +73,6 @@ class App extends Component {
           </div>
         ) : null}
 
-        
         {/* <Person
           name={this.state.persons[0].name}
           age={this.state.persons[0].age}
@@ -119,3 +118,8 @@ class App extends Component {
 // }
 
 export default App;
+
+
+
+//learn react
+//testing git commit username change
